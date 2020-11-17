@@ -13,15 +13,19 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.toptroc.Fragments.HomeFragment;
+import com.example.toptroc.Fragments.InformationsFragment;
 import com.example.toptroc.Fragments.MessagesFragment;
+import com.example.toptroc.Fragments.MyObjectsFragment;
 import com.example.toptroc.Fragments.NotificationsFragment;
+import com.example.toptroc.Fragments.ParametersFragment;
 import com.example.toptroc.Fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 public class HomeActivity extends AppCompatActivity {
     
     BottomNavigationView bottomNavigation;
-    FrameLayout frameLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +38,10 @@ public class HomeActivity extends AppCompatActivity {
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
 
-
         bottomNavigation = (BottomNavigationView) findViewById(R.id.bottomNavigation);
         bottomNavigation.setOnNavigationItemSelectedListener(navigation);
 
-        // Fragment par défaut //
+        // Fragments par défaut //
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,
                 new HomeFragment()).commit();
     }
