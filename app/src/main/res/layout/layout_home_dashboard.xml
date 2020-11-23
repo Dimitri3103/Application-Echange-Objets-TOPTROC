@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/beige">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/beige">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/beige"
+                app:layout_scrollFlags="scroll|snap|enterAlwaysCollapsed">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/navigationBar"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:contentDescription="Navigation Bar"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/ic_menu"
+                        />
+
+                    <androidx.appcompat.widget.SearchView
+                        android:id="@+id/searchViewObject"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/border_radius"
+                        app:iconifiedByDefault="false"
+                        app:queryHint="Rechercher un objet" />
+
+                </LinearLayout>
+
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbarLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/beige"
+                app:layout_scrollFlags="scroll|snap|enterAlwaysCollapsed">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    app:layout_constraintTop_toTopOf="@id/collapsingToolbarLayout">
+
+                    <ImageButton
+                        android:id="@+id/imageButtonLocation"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/ic_location"
+                        android:backgroundTint="@color/purple_500"
+                        android:layout_margin="5dp"
+                        />
+                    <TextView
+                        android:id="@+id/textViewLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:textColor="@color/purple_500"
+                        android:textSize="16sp"
+                        android:textAlignment="center"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/border_radius"/>
+
+                </LinearLayout>
+
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    <ImageView
+        android:id="@+id/imageViewDeposit"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="Bouton de dépot d'objets"
+        android:src="@drawable/ic_add_circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
