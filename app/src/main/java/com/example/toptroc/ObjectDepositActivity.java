@@ -16,12 +16,8 @@ public class ObjectDepositActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_object_deposit);
 
-        // Cacher la barre de statut //
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-        {
-            Window w =getWindow();
-            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
+        // Couleur de la barre de statut
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
     }
 

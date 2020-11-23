@@ -1,24 +1,30 @@
 package com.example.toptroc.Fragments;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.toptroc.LoginActivity;
 import com.example.toptroc.ObjectDepositActivity;
 import com.example.toptroc.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.material.navigation.NavigationView;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,8 +40,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     NavigationView navigationView;
     private View view;
     private RelativeLayout LoginSignUp,Ad,Search,Selection,Contact;
-    private TextView Historical,FeedBack,Playstore;
+    TextView Historical,FeedBack,FAQ;
     ImageView imageViewDeposit;
+    SearchView searchViewObject;
+    ImageButton imageButtonLocation;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +57,27 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ObjectDepositActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        searchViewObject = (SearchView) view.findViewById(R.id.searchViewObject);
+        searchViewObject.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        imageButtonLocation = (ImageButton) view.findViewById(R.id.imageButtonLocation);
+        imageButtonLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Localisation",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -68,7 +97,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         Historical = (TextView) view.findViewById(R.id.historical);
         FeedBack = (TextView) view.findViewById(R.id.feedback);
-        Playstore = (TextView) view.findViewById(R.id.playstore);
+        FAQ = (TextView) view.findViewById(R.id.FAQ);
 
         navigationBar.setOnClickListener(this);
 
@@ -80,17 +109,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         Historical.setOnClickListener(this);
         FeedBack.setOnClickListener(this);
-        Playstore.setOnClickListener(this);
+        FAQ.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        Fragment selectedFragment = null;
         switch (v.getId()){
             case R.id.navigationBar:
                 drawerLayout.openDrawer(navigationView, true);
                 break;
             case R.id.relativeLayoutLoginSignUp:
-                Toast.makeText(getContext(),"Connexion ou Inscripition",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), LoginActivity.class));
                 break;
             case R.id.relativeLayoutAd:
                 Toast.makeText(getContext(),"Annonces",Toast.LENGTH_SHORT).show();
@@ -110,8 +140,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.feedback:
                 Toast.makeText(getContext(),"Feedback",Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.playstore:
-                Toast.makeText(getContext(),"Playstore",Toast.LENGTH_SHORT).show();
+            case R.id.FAQ:
+                Toast.makeText(getContext(),"FAQ",Toast.LENGTH_SHORT).show();
                 break;
         }
     }
