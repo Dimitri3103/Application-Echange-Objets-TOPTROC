@@ -1,29 +1,33 @@
 package com.example.toptroc.Fragments;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
-import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.toptroc.Adaptaters.VerticalSliderAdapter;
 import com.example.toptroc.LoginActivity;
+import com.example.toptroc.MainActivity;
+import com.example.toptroc.Models.VerticalSliderModel;
 import com.example.toptroc.ObjectDepositActivity;
 import com.example.toptroc.R;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
+import com.example.toptroc.Sessions.SessionManager;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -35,15 +39,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
 
-    DrawerLayout drawerLayout;
-    ImageView navigationBar;
-    NavigationView navigationView;
+    private DrawerLayout drawerLayout;
+    private ImageView navigationBar,imageViewDeposit;
+    private NavigationView navigationView;
     private View view;
-    private RelativeLayout LoginSignUp,Ad,Search,Selection,Contact;
-    TextView Historical,FeedBack,FAQ;
-    ImageView imageViewDeposit;
-    SearchView searchViewObject;
-    ImageButton imageButtonLocation;
+    private RelativeLayout Ad,Search,Selection,Contact;
+    private TextView Historical,FeedBack,FAQ,textViewLogin,textViewLogout;
+    private SearchView searchViewObject;
+    SessionManager sessionManager;
+
+    //Vertical Slider
+    private RecyclerView recyclerViewVertical;
+    private VerticalSliderAdapter verticalSliderAdapter;
+    private List<VerticalSliderModel> verticalSliderModelList;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,6 +60,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        sessionManager = new SessionManager(getContext());
+
+        //bouton de dépôt d'objet
         imageViewDeposit = (ImageView) view.findViewById(R.id.imageViewDeposit);
         imageViewDeposit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +71,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             }
         });
-
+        //
+        //Barre de recherche
         searchViewObject = (SearchView) view.findViewById(R.id.searchViewObject);
         searchViewObject.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -72,14 +85,32 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 return false;
             }
         });
+        //
 
-        imageButtonLocation = (ImageButton) view.findViewById(R.id.imageButtonLocation);
-        imageButtonLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(),"Localisation",Toast.LENGTH_SHORT).show();
-            }
-        });
+        //Vertical Slider
+        recyclerViewVertical = (RecyclerView) view.findViewById(R.id.recyclerViewVertical);
+        LinearLayoutManager layoutManagerVerticalSLider = new LinearLayoutManager(getContext());
+        layoutManagerVerticalSLider.setOrientation(RecyclerView.VERTICAL);
+        recyclerViewVertical.setLayoutManager(layoutManagerVerticalSLider);
+
+        verticalSliderModelList = new ArrayList<>();
+        verticalSliderModelList.add(new VerticalSliderModel(R.drawable.ic_launcher_background,R.drawable.messages,"Nom Utilisateur","Contact","Nom Objet","Description Objet"));
+        verticalSliderModelList.add(new VerticalSliderModel(R.drawable.ic_launcher_background,R.drawable.messages,"Nom Utilisateur","Contact","Nom Objet","Description Objet"));
+        verticalSliderModelList.add(new VerticalSliderModel(R.drawable.ic_launcher_background,R.drawable.messages,"Nom Utilisateur","Contact","Nom Objet","Description Objet"));
+        verticalSliderModelList.add(new VerticalSliderModel(R.drawable.ic_launcher_background,R.drawable.messages,"Nom Utilisateur","Contact","Nom Objet","Description Objet"));
+        verticalSliderModelList.add(new VerticalSliderModel(R.drawable.ic_launcher_background,R.drawable.messages,"Nom Utilisateur","Contact","Nom Objet","Description Objet"));
+        verticalSliderModelList.add(new VerticalSliderModel(R.drawable.ic_launcher_background,R.drawable.messages,"Nom Utilisateur","Contact","Nom Objet","Description Objet"));
+        verticalSliderModelList.add(new VerticalSliderModel(R.drawable.ic_launcher_background,R.drawable.messages,"Nom Utilisateur","Contact","Nom Objet","Description Objet"));
+        verticalSliderModelList.add(new VerticalSliderModel(R.drawable.ic_launcher_background,R.drawable.messages,"Nom Utilisateur","Contact","Nom Objet","Description Objet"));
+        verticalSliderModelList.add(new VerticalSliderModel(R.drawable.ic_launcher_background,R.drawable.messages,"Nom Utilisateur","Contact","Nom Objet","Description Objet"));
+        verticalSliderModelList.add(new VerticalSliderModel(R.drawable.ic_launcher_background,R.drawable.messages,"Nom Utilisateur","Contact","Nom Objet","Description Objet"));
+        verticalSliderModelList.add(new VerticalSliderModel(R.drawable.ic_launcher_background,R.drawable.messages,"Nom Utilisateur","Contact","Nom Objet","Description Objet"));
+        verticalSliderModelList.add(new VerticalSliderModel(R.drawable.ic_launcher_background,R.drawable.messages,"Nom Utilisateur","Contact","Nom Objet","Description Objet"));
+        verticalSliderModelList.add(new VerticalSliderModel(R.drawable.ic_launcher_background,R.drawable.messages,"Nom Utilisateur","Contact","Nom Objet","Description Objet"));
+        verticalSliderModelList.add(new VerticalSliderModel(R.drawable.ic_launcher_background,R.drawable.messages,"Nom Utilisateur","Contact","Nom Objet","Description Objet"));
+
+        verticalSliderAdapter = new VerticalSliderAdapter(verticalSliderModelList,getContext());
+        recyclerViewVertical.setAdapter(verticalSliderAdapter);
 
         onSetNavigationDrawerEvents();
         return view;
@@ -89,7 +120,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         navigationView = (NavigationView) view.findViewById(R.id.navigationView);
         navigationBar = (ImageView) view.findViewById(R.id.navigationBar);
 
-        LoginSignUp = (RelativeLayout) view.findViewById(R.id.relativeLayoutLoginSignUp);
+        textViewLogin = (TextView) view.findViewById(R.id.textViewLogin);
+        textViewLogout = (TextView) view.findViewById(R.id.textViewLogout);
+
         Ad = (RelativeLayout) view.findViewById(R.id.relativeLayoutAd);
         Search = (RelativeLayout) view.findViewById(R.id.relativeLayoutSearch);
         Selection = (RelativeLayout) view.findViewById(R.id.relativeLayoutSelection);
@@ -101,7 +134,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         navigationBar.setOnClickListener(this);
 
-        LoginSignUp.setOnClickListener(this);
+        textViewLogin.setOnClickListener(this);
+        textViewLogout.setOnClickListener(this);
+
         Ad.setOnClickListener(this);
         Search.setOnClickListener(this);
         Selection.setOnClickListener(this);
@@ -119,8 +154,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.navigationBar:
                 drawerLayout.openDrawer(navigationView, true);
                 break;
-            case R.id.relativeLayoutLoginSignUp:
-                startActivity(new Intent(getActivity(), LoginActivity.class));
+            case R.id.textViewLogin:
+                Login();
+                break;
+            case R.id.textViewLogout:
+                Logout();
                 break;
             case R.id.relativeLayoutAd:
                 Toast.makeText(getContext(),"Annonces",Toast.LENGTH_SHORT).show();
@@ -146,4 +184,30 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    private void Login() {
+        Intent intent = new Intent(getContext(), LoginActivity.class);
+        startActivity(intent);
+        getActivity().finish();
+    }
+
+    private void Logout() {
+
+        sessionManager.editor.clear();
+        sessionManager.editor.commit();
+
+        Intent intent = new Intent(getContext(), MainActivity.class);
+        startActivity(intent);
+        getActivity().finish();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        if (sessionManager.isLogin()){
+
+            textViewLogin.setVisibility(View.GONE);
+            textViewLogout.setVisibility(View.VISIBLE);
+        }
+    }
 }

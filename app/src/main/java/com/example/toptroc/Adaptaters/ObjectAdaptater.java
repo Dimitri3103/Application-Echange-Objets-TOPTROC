@@ -36,7 +36,7 @@ public class ObjectAdaptater extends RecyclerView.Adapter<ObjectAdaptater.Object
     public void onBindViewHolder(@NonNull ObjectViewHolder holder, int position) {
 
         ObjectModel objectModel = objectModelList.get(position);
-        Glide.with(context).load(objectModel.getObject_img()).into(holder.objectImg);
+        Glide.with(context).load(objectModel.getObject_img()).into(holder.objImg);
     }
 
     @Override
@@ -46,10 +46,11 @@ public class ObjectAdaptater extends RecyclerView.Adapter<ObjectAdaptater.Object
 
     public class ObjectViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView objectImg;
+        public ImageView objImg;
+
         public ObjectViewHolder(@NonNull View itemView) {
             super(itemView);
-            objectImg = (ImageView) itemView.findViewById(R.id.imageViewObjets);
+            objImg = (ImageView) itemView.findViewById(R.id.imageViewObjets);
         }
     }
 }

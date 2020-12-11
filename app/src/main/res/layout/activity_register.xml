@@ -77,6 +77,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <EditText
+            android:id="@+id/emailRegister"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Email"
@@ -94,6 +95,7 @@
             android:drawableTint="@color/purple_500"
             />
         <EditText
+            android:id="@+id/nameRegister"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Nom"
@@ -111,6 +113,7 @@
             android:drawableTint="@color/purple_500"
             />
         <EditText
+            android:id="@+id/phoneRegister"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Téléphone"
@@ -128,6 +131,7 @@
             android:drawableTint="@color/purple_500"
             />
         <EditText
+            android:id="@+id/passwordRegister"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Mot de passe"
@@ -159,6 +163,7 @@
             android:layout_marginTop="8dp"/>
 
         <Button
+            android:id="@+id/buttonRegister"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="Valider"

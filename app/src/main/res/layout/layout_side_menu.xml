@@ -18,12 +18,26 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/textViewLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:fontFamily="sans-serif-condensed-medium"
             android:text="Connexion Ou Inscription"
+            android:textColor="@color/purple_500"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/textViewLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Déconnexion"
             android:textColor="@color/purple_500"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -37,6 +51,7 @@
             android:src="@drawable/right_arrow"
             app:tint="@color/purple_500" />
     </RelativeLayout>
+
     <View
         android:id="@+id/view1"
         android:layout_width="0dp"

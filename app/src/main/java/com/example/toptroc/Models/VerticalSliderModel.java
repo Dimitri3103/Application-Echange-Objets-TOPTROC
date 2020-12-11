@@ -1,18 +1,20 @@
 package com.example.toptroc.Models;
 
-public class ObjectModel {
-    public ObjectModel(){
-        //Constructeur Vide //
+public class VerticalSliderModel {
+
+    public VerticalSliderModel() {
     }
-    private int object_img;
+
+    private int object_img,object_message;
     private String nomUser,contactUser,nomObjet,descriptionObjet;
 
-    public ObjectModel(int object_img,String nomUser,String contactUser,String nomObjet,String descriptionObjet){
+    public  VerticalSliderModel(int object_img,int object_message,String nomUser,String contactUser,String nomObjet,String descriptionObjet){
         this.object_img = object_img;
         this.nomUser = nomUser;
         this.contactUser = contactUser;
         this.nomObjet = nomObjet;
         this.descriptionObjet = descriptionObjet;
+        this.object_message = object_message;
     }
 
     public int getObject_img() {
@@ -21,6 +23,14 @@ public class ObjectModel {
 
     public void setObject_img(int object_img) {
         this.object_img = object_img;
+    }
+
+    public int getObject_message() {
+        return object_message;
+    }
+
+    public void setObject_message(int object_message) {
+        this.object_message = object_message;
     }
 
     public String getNomUser() {
@@ -35,8 +45,8 @@ public class ObjectModel {
         return contactUser;
     }
 
-    public void setContactUser(String contatUser) {
-        this.contactUser = contatUser;
+    public void setContactUser(String contactUser) {
+        this.contactUser = contactUser;
     }
 
     public String getNomObjet() {
